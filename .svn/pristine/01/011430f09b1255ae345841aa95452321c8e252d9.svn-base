@@ -93,11 +93,8 @@ function feacpost_dcl(){
 
 // Widget functionality
 
-function feacpost_show_category_posts($widget_id,$before_widget,$after_widget,$before_title,$after_title,$feacpost_numberposts, $feacpost_rpwidgettitle,$feacpost_widget_title_header,$feacpost_widget_classname,$feacpost_widget_container_type,$feacpost_widget_title_header_classname,$feacpost_featured_category,$include_post_thumbnail,$feacpost_post_thumbnail_id,$feacpost_before_widget_code,$feacpost_after_widget_code,$feacpost_before_title_code,$feacpost_after_title_code,$feacpost_post_thumbnail_position,$feacpost_include_post_title,$feacpost_post_title_header,$feacpost_post_title_header_classname,$feacpost_include_post_author,$feacpost_include_post_date,$feacpost_show_post_excerpt,$feacpost_post_excerpt_length,$feacpost_show_continue_reading_link,$feacpost_continue_reading_text,$feacpost_author_date_div_class,$feacpost_posted_by_text,$feacpost_numberposts_sub,$feacpost_exclude_category,$feacpost_exclude_current_post)
+function feacpost_show_category_posts($widget_id,$before_widget,$after_widget,$before_title,$after_title,$feacpost_numberposts, $feacpost_rpwidgettitle,$feacpost_widget_title_header,$feacpost_widget_classname,$feacpost_widget_container_type,$feacpost_widget_title_header_classname,$feacpost_featured_category,$include_post_thumbnail,$feacpost_post_thumbnail_id,$feacpost_before_widget_code,$feacpost_after_widget_code,$feacpost_before_title_code,$feacpost_after_title_code,$feacpost_post_thumbnail_position,$feacpost_include_post_title,$feacpost_post_title_header,$feacpost_post_title_header_classname,$feacpost_include_post_author,$feacpost_include_post_date,$feacpost_show_post_excerpt,$feacpost_post_excerpt_length,$feacpost_show_continue_reading_link,$feacpost_continue_reading_text,$feacpost_author_date_div_class,$feacpost_posted_by_text,$feacpost_numberposts_sub)
 {
-	global $post;
-	$currentPostId = $post->ID;
-	$currentPostCategories = implode(',-', wp_get_post_categories($currentPostId));
 
 	if(!$output = wp_cache_get($widget_id))
 	{
@@ -176,13 +173,7 @@ function feacpost_show_category_posts($widget_id,$before_widget,$after_widget,$b
 	{
 		$featuredcatname=get_cat_name($featuredcatid);
 
-		$queryVars = array(
-			'posts_per_page' => $postsper
-		);
-		$queryVars['cat'] = $featuredcatid . ( $feacpost_exclude_category == 'Yes' ? ', -' . $currentPostCategories : '' );
-		$queryVars['post__not_in'] = ( $feacpost_exclude_current_post == 'Yes' ? array( $currentPostId ) : '' );
-
-		query_posts( $queryVars );
+		query_posts('cat='.$featuredcatid.'&posts_per_page='.$postsper);
 
 					$output.=$feacpost_before_widget_code;
 

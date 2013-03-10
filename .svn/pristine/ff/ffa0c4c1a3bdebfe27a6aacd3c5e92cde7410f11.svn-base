@@ -58,13 +58,10 @@ class feacpost_FeaturedCategoryPostsWidget extends WP_Widget {
 		if(isset($instance['feacpost_after_widget_code']) && !empty($instance['feacpost_after_widget_code'])){$feacpost_after_widget_code = $instance['feacpost_after_widget_code'];}else {$feacpost_after_widget_code = "";}
 		if(isset($instance['feacpost_before_title_code']) && !empty($instance['feacpost_before_title_code'])){$feacpost_before_title_code = $instance['feacpost_before_title_code'];}else {$feacpost_before_title_code = "";}
 		if(isset($instance['feacpost_after_title_code']) && !empty($instance['feacpost_after_title_code'])){$feacpost_after_title_code = $instance['feacpost_after_title_code'];}else {$feacpost_after_title_code = "";}
-		
-		
-if(isset($instance['feacpost_exclude_category']) && !empty($instance['feacpost_exclude_category'])){$feacpost_exclude_category = $instance['feacpost_exclude_category'];}else {$feacpost_exclude_category = "";}
 
-if(isset($instance['feacpost_exclude_current_post']) && !empty($instance['feacpost_exclude_current_post'])){$feacpost_exclude_current_post = $instance['feacpost_exclude_current_post'];}else {$feacpost_exclude_current_post = "";}
 
-	    if ( function_exists('feacpost_show_category_posts') ) { feacpost_show_category_posts($widget_id,$before_widget,$after_widget,$before_title,$after_title,$feacpost_numberposts, $feacpost_rpwidgettitle,$feacpost_widget_title_header,$feacpost_widget_classname,$feacpost_widget_container_type,$feacpost_widget_title_header_classname,$feacpost_featured_category,$include_post_thumbnail,$feacpost_post_thumbnail_id,$feacpost_before_widget_code,$feacpost_after_widget_code,$feacpost_before_title_code,$feacpost_after_title_code,$feacpost_post_thumbnail_position,$feacpost_include_post_title,$feacpost_post_title_header,$feacpost_post_title_header_classname,$feacpost_include_post_author,$feacpost_include_post_date,$feacpost_show_post_excerpt,$feacpost_post_excerpt_length,$feacpost_show_continue_reading_link,$feacpost_continue_reading_text,$feacpost_author_date_div_class,$feacpost_posted_by_text,$feacpost_numberposts_sub,$feacpost_exclude_category,$feacpost_exclude_current_post);}
+
+	    if ( function_exists('feacpost_show_category_posts') ) { feacpost_show_category_posts($widget_id,$before_widget,$after_widget,$before_title,$after_title,$feacpost_numberposts, $feacpost_rpwidgettitle,$feacpost_widget_title_header,$feacpost_widget_classname,$feacpost_widget_container_type,$feacpost_widget_title_header_classname,$feacpost_featured_category,$include_post_thumbnail,$feacpost_post_thumbnail_id,$feacpost_before_widget_code,$feacpost_after_widget_code,$feacpost_before_title_code,$feacpost_after_title_code,$feacpost_post_thumbnail_position,$feacpost_include_post_title,$feacpost_post_title_header,$feacpost_post_title_header_classname,$feacpost_include_post_author,$feacpost_include_post_date,$feacpost_show_post_excerpt,$feacpost_post_excerpt_length,$feacpost_show_continue_reading_link,$feacpost_continue_reading_text,$feacpost_author_date_div_class,$feacpost_posted_by_text,$feacpost_numberposts_sub);}
 
    }
 
@@ -122,12 +119,7 @@ if(isset($instance['feacpost_exclude_current_post']) && !empty($instance['feacpo
        if(isset($instance['feacpost_featured_category']) && !empty($instance['feacpost_featured_category'])){
        $feacpost_featured_category = esc_attr($instance['feacpost_featured_category']);}else { $feacpost_featured_category="";}
 
-       if(isset($instance['feacpost_exclude_category']) && !empty($instance['feacpost_exclude_category'])){
-       $feacpost_exclude_category = esc_attr($instance['feacpost_exclude_category']);}else { $feacpost_exclude_category="";}
 
-       if(isset($instance['feacpost_exclude_current_post']) && !empty($instance['feacpost_exclude_current_post'])){
-       $feacpost_exclude_current_post = esc_attr($instance['feacpost_exclude_current_post']);}else { $feacpost_exclude_current_post="";}
-       
        /* The Thumbnail */
 
        if(isset($instance['include_post_thumbnail']) && !empty($instance['include_post_thumbnail'])){
@@ -272,35 +264,6 @@ if(isset($instance['feacpost_exclude_current_post']) && !empty($instance['feacpo
 	    </select>
        </label>
        </p>
-       
-       <p style="margin-top:10px;">
-       <label for="<?php echo $this->get_field_id('feacpost_exclude_category'); ?>"><?php _e('Exclude posts from current posts category / categories:','feacpost'); ?>
-       <select id="<?php echo $this->get_field_id('feacpost_exclude_category'); ?>" name="<?php echo $this->get_field_name('feacpost_exclude_category'); ?>">
-	                <?php
-			foreach($yesnoops as $yesno) {
-			    ?>
-			    <option value="<?php echo $yesno; ?>"<?php if($yesno == $feacpost_exclude_category) { ?> selected="selected"<?php } ?>><?php echo $yesno; ?></option>
-			    <?php
-			}
-			?>
-	    </select>
-       </label>
-       </p>
-       
-       <p style="margin-top:10px;">
-       <label for="<?php echo $this->get_field_id('feacpost_exclude_current_post'); ?>"><?php _e('Exclude current post:','feacpost'); ?>
-       <select id="<?php echo $this->get_field_id('feacpost_exclude_current_post'); ?>" name="<?php echo $this->get_field_name('feacpost_exclude_current_post'); ?>">
-	                <?php
-			foreach($yesnoops as $yesno) {
-			    ?>
-			    <option value="<?php echo $yesno; ?>"<?php if($yesno == $feacpost_exclude_current_post) { ?> selected="selected"<?php } ?>><?php echo $yesno; ?></option>
-			    <?php
-			}
-			?>
-	    </select>
-       </label>
-       </p>
-
        <p style="margin-top:10px;">
        <label for="<?php echo $this->get_field_id('include_post_thumbnail'); ?>"><?php _e('Show post thumbnail?','feacpost'); ?>
 		    <select id="<?php echo $this->get_field_id('include_post_thumbnail'); ?>" name="<?php echo $this->get_field_name('include_post_thumbnail'); ?>">
